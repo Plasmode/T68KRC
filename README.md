@@ -5,7 +5,7 @@ T68KRC derived from version 1 of Tiny68K. The major differences are Instead of 1
 
 Figure below shows an assembled T68KRC.
 
-www.retrobrewcomputers.org_lib_plugins_ckgedit_fckeditor_userfiles_image_builderpages_plasmo_t68krc_dsc_37130712.jpg
+![](T68KRC_main.jpeg)
 ## Features
 
 - Motorola 68000 CPU
@@ -31,29 +31,29 @@ www.retrobrewcomputers.org_lib_plugins_ckgedit_fckeditor_userfiles_image_builder
 
 Low cost without sacrificing performance is the design goal of T68KRC. Cost control is achieved by:
 
-    Two-layer PC board in 100mm x 76mm format. Many board manufacturers only charge 50 cents per board in quantity of 10 in this format,
-    Memory in the form of single-chip 1Mx16 DRAM,
-    Low cost 5-Volt CPLD, Altera EPM7128, that is about $3-4 each from China,
-    Use low-cost serial flash memory as the boot memory,
-    Interface via pc board edge connector to a low-cost 44-pin IDE-CF module,
-    No on-board RS232 transceiver because most USB-based serial port modules operate at the TTL level,
-    Low cost RC2014 expansion bus connector.
+- Two-layer PC board in 100mm x 76mm format. Many board manufacturers only charge 50 cents per board in quantity of 10 in this format,
+- Memory in the form of single-chip 1Mx16 DRAM,
+- Low cost 5-Volt CPLD, Altera EPM7128, that is about $3-4 each from China,
+- Use low-cost serial flash memory as the boot memory,
+- Interface via pc board edge connector to a low-cost 44-pin IDE-CF module,
+- No on-board RS232 transceiver because most USB-based serial port modules operate at the TTL level,
+- Low cost RC2014 expansion bus connector.
 
 Good performance is maintained by:
 
-    16-bit wide data bus,
-    2-megabyte 60ns DRAM operating at zero wait state (at 8MHz system clock),
-    Fast serial flash loads monitor in 0.6 second after a reset or power on,
-    16-bit wide bus-connected IDE interface operating with two wait state at 8MHz, ←verify this
-    Hidden CAS-before-RAS refresh cycle with no software overhead.
+- 16-bit wide data bus,
+- 2-megabyte 60ns DRAM operating at zero wait state (at 8MHz system clock),
+- Fast serial flash loads monitor in 0.6 second after a reset or power on,
+- 16-bit wide bus-connected IDE interface operating with two wait state at 8MHz, ←verify this
+- Hidden CAS-before-RAS refresh cycle with no software overhead.
 
 ### Memory map
 
-    RAM is from 0x0 to 0x1FFFFF,
-    Serial Flash is from 0xFFD000-0xFFDFFF
-    IDE-CF is from 0xFFE000-0xFFEFFF
-    68681 DUART is from 0xFFF000-0xFFFFFF
-    RC2014 expansion bus is from 0xFF8000-0xFF8FFF. 2 wait states access ← verify this
+- RAM is from 0x0 to 0x1FFFFF,
+- Serial Flash is from 0xFFD000-0xFFDFFF
+- IDE-CF is from 0xFFE000-0xFFEFFF
+- 68681 DUART is from 0xFFF000-0xFFFFFF
+- RC2014 expansion bus is from 0xFF8000-0xFF8FFF. 2 wait states access ← verify this
 
 ## Design Files <- Need extensive updates
 
