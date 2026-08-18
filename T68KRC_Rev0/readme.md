@@ -27,54 +27,54 @@ Figure below shows an assembled T68KRC.
 ### Descriptions
 Low cost without sacrificing performance is the design goal of T68KRC. Cost control is achieved by:
 
-Two-layer PC board in 100mm x 76mm format. Many board manufacturers only charge 50 cents per board in quantity of 10 in this format,
-Memory in the form of single-chip 1Mx16 DRAM,
-Low cost 5-Volt CPLD, Altera EPM7128, that is about $3-4 each from China,
-Use low-cost serial flash memory as the boot memory,
-Interface via pc board edge connector to a low-cost 44-pin IDE-CF module,
-No on-board RS232 transceiver because most USB-based serial port modules operate at the TTL level,
-Low cost RC2014 expansion bus connector.
+- Two-layer PC board in 100mm x 76mm format. Many board manufacturers only charge 50 cents per board in quantity of 10 in this format,
+- Memory in the form of single-chip 1Mx16 DRAM,
+- Low cost 5-Volt CPLD, Altera EPM7128, that is about $3-4 each from China,
+- Use low-cost serial flash memory as the boot memory,
+- Interface via pc board edge connector to a low-cost 44-pin IDE-CF module,
+- No on-board RS232 transceiver because most USB-based serial port modules operate at the TTL level,
+- Low cost RC2014 expansion bus connector.
 Good performance is maintained by:
 
-16-bit wide data bus,
-2-megabyte 60ns DRAM operating at zero wait state (at 8MHz system clock),
-Fast serial flash loads monitor in 0.6 second after a reset or power on,
-16-bit wide bus-connected IDE interface operating with two wait state at 8MHz, ←verify this
-Hidden CAS-before-RAS refresh cycle with no software overhead.
-Memory map
-RAM is from 0x0 to 0x1FFFFF,
-Serial Flash is from 0xFFD000-0xFFDFFF
-IDE-CF is from 0xFFE000-0xFFEFFF
-68681 DUART is from 0xFFF000-0xFFFFFF
-RC2014 expansion bus is from 0xFF8000-0xFF8FFF. 2 wait states access ← verify this
+- 16-bit wide data bus,
+- 2-megabyte 60ns DRAM operating at zero wait state (at 8MHz system clock),
+- Fast serial flash loads monitor in 0.6 second after a reset or power on,
+- 16-bit wide bus-connected IDE interface operating with two wait state at 8MHz, ←verify this
+- Hidden CAS-before-RAS refresh cycle with no software overhead.
+### Memory map
+- RAM is from 0x0 to 0x1FFFFF,
+- Serial Flash is from 0xFFD000-0xFFDFFF
+- IDE-CF is from 0xFFE000-0xFFEFFF
+- 68681 DUART is from 0xFFF000-0xFFFFFF
+- RC2014 expansion bus is from 0xFF8000-0xFF8FFF. 2 wait states access ← verify this
 ### Design Files <- Need extensive updates
-Rev 1 schematic
+- Rev 1 schematic
 
-Rev 1 Gerber files
+- Rev 1 Gerber files
 
-Part list
+- Part list
 
-Tiny68K Monitor debugger. The software is developed in the EASy68K tool chain. Programming binary for serial EEPROM programmer (CH341).
+- Tiny68K Monitor debugger. The software is developed in the EASy68K tool chain. Programming binary for serial EEPROM programmer (CH341).
 
-Altera EPM7128 design files Designs are created in Quartus 8.1, should be compatible with later version of Quartus. Designs are entirely in schematics. Schematic in PDF format. Programming binary in .pof format. 11/23/17 update: The original design files posted were incorrect. This is the correct version of the design files. Altera EPM7128 design files Designs are created in Quartus 8.1, should be compatible with later version of Quartus. Designs are entirely in schematics. Schematic in PDF format. Programming binary in .pof format. ← need revision
+- Altera EPM7128 design files Designs are created in Quartus 8.1, should be compatible with later version of Quartus. Designs are entirely in schematics. Schematic in PDF format. Programming binary in .pof format. 11/23/17 update: The original design files posted were incorrect. This is the correct version of the design files. Altera EPM7128 design files Designs are created in Quartus 8.1, should be compatible with later version of Quartus. Designs are entirely in schematics. Schematic in PDF format. Programming binary in .pof format. ← need revision
 
-CP/M-68K BIOS for T68KRC *
+- CP/M-68K BIOS for T68KRC *
 
-CP/M-68K CPM v1.3
+- CP/M-68K CPM v1.3
 
-CP/M-68K v1.3 distribution disk image for T68KRC RAMdrive
+- CP/M-68K v1.3 distribution disk image for T68KRC RAMdrive
 
-RS232 adapter board to interface to the DB9 serial connector of a PC. The RS232 adapter is not needed for most USB-to-serial adapters which have TTL level I/O.
+- RS232 adapter board to interface to the DB9 serial connector of a PC. The RS232 adapter is not needed for most USB-to-serial adapters which have TTL level I/O.
 
-Utility
+- Utility
 
 Memory diagnostics Clear CP/M memory area
 
-Connect to a PC
+### Connect to a PC
 A PC with terminal program such as Hyperterminal is needed to interface with Tiny68K. An USB-to-serial adapter with TTL level input/output can connect directly to T68KRC's console connector. For USB-to-serial adapter with RS232 I/O, an adapter board is needed.
 
-Powering up T68KRC
+### Powering up T68KRC
 Apply 5V to the board via the 2.5mm power jack, the center is 5V, barrel is ground. The nominal power consumption at 8MHz system clock is 500mA. When powered is applied, the 7-segment LED will display '8' for a second and then '6'. While waiting for console command, the outer segments of the 7-segment display will flash for 1/2 second, one segment at a time, in a circular sequence. If the display indicate a static '4', it is waiting for hardware handshake signal to assert. Be sure the terminal program has RTS/CTS hardware handshake enabled.
 
-Creating a new CF disk
+### Creating a new CF disk
 Procedure for creating a new CF disk
