@@ -5,5 +5,5 @@ T68KRC derived from version 1 of Tiny68K. The major differences are Instead of 1
 
 Current version of T68KRC is rev0.1.  It corrected a minor engineering change in rev0
 
-![](T68KRC_main.jpeg)
+![](T68KRC_REV0.1/t68krc_rev01_topview.jpg)
 
