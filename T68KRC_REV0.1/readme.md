@@ -58,35 +58,21 @@ The software development environment for the serial EEPROM is as followed:
 * Rev 1 Gerber files
 * Part list
 
-Software
-Tiny68K Monitor debugger. The software is developed in the EASy68K tool chain. Programming binary for serial EEPROM programmer (CH341).
+### Software
+- Tiny68K Monitor debugger. The software is developed in the EASy68K tool chain. Programming binary for serial EEPROM programmer (CH341).
+- Clear CP/M memory area. This small utility prepare the memory space where CP/M BIOS/CCP/BDOS will reside. Its use is explain in the procedure for creating new CF disk.
+- T68KRC BIOS, updated 8/11/19 with correct TPA size.
+- CP/M-68K CPM v1.3
+- CP/M-68K v1.3 distribution disk image for T68KRC RAMdrive
+- RS232 adapter board to interface to the DB9 serial connector of a PC. The RS232 adapter is not needed for most USB-to-serial adapters which have TTL level I/O.
+- Utility
+  - Memory diagnostics
+  - Clear CP/M memory area
 
-Clear CP/M memory area. This small utility prepare the memory space where CP/M BIOS/CCP/BDOS will reside. Its use is explain in the procedure for creating new CF disk.
 
-T68KRC BIOS, updated 8/11/19 with correct TPA size.
-
-CP/M-68K CPM v1.3
-
-CP/M-68K v1.3 distribution disk image for T68KRC RAMdrive
-
-RS232 adapter board to interface to the DB9 serial connector of a PC. The RS232 adapter is not needed for most USB-to-serial adapters which have TTL level I/O.
-
-Utility
-
-Memory diagnostics
-Clear CP/M memory area
-
-* Tiny68K Monitor debugger. The software is developed in the EASy68K tool chain. Programming binary for serial EEPROM programmer (CH341).
 * Altera EPM7128 design files Designs are created in Quartus 8.1, should be compatible with later version of Quartus. Designs are entirely in schematics. Schematic in PDF format. Programming binary in .pof format.
     11/23/17 update: The original design files posted were incorrect. This is the correct version of the design files. Altera EPM7128 design files Designs are created in Quartus 8.1, should be compatible with later version of Quartus. Designs are entirely in schematics. Schematic in PDF format. Programming binary in .pof format. ← need revision
-* CP/M-68K BIOS for T68KRC *
-* CP/M-68K CPM v1.3
-* CP/M-68K v1.3 distribution disk image for T68KRC RAMdrive
-* RS232 adapter board to interface to the DB9 serial connector of a PC. The RS232 adapter is not needed for most USB-to-serial adapters which have TTL level I/O.
-* Utility
 
-    Memory diagnostics
-    Clear CP/M memory area
 
 ### Connect to a PC
 
