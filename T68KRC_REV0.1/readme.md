@@ -1,12 +1,12 @@
 # T68KRC, Rev0.1 
-### Introduction
+## Introduction
 
 T68KRC derived from version 1 of Tiny68K. The major differences are Instead of 16 meg of memory, T68KRC has 2 meg of memory, and an expansion bus that's compatible with RC2014's I/O module is added. Like Tiny68K, T68KRC has no parallel ROM. The boot ROM is a 32Kbyte serial flash that's copied into the lowest 32Kbyte of the memory when powered up or with a reset. The RAM-resident boot software can be modified just like any data in RAM but is overwritten on the next power cycle or with a reset.
 
 Figure below shows an assembled T68KRC Rev0.1.
 ![rev0.1](t68krc_rev01_topview.jpg)
 
-### Features
+## Features
 
 - Motorola 68000 CPU
 - MC68681 DUART, port A is the console operating at 38400 baud, 8N1, with CTS/RTS hardware handshake.
@@ -27,25 +27,22 @@ Figure below shows an assembled T68KRC Rev0.1.
 - Target for CP/M-68K ver 1.3
 - 100mm x 76mm 2-layer pc board
 
-### Descriptions
+## Descriptions
 
-Low cost without sacrificing performance is the design goal of T68KRC. Cost control is achieved by:
+This is a basic 68000 single board computer with one unusual feature. The boot ROM is stored in an low-cost 256kbit serial EEPROM, 24C256. At power up or when reset button is pressed, the content of the serial EEPROM is copied into the low address of DRAM while 68000 is held in reset. When the copying operation is completed, the 68000 nRESET is released and it boots from the code in EEPROM. The design motivation is cost saving because serial EEPROM is significantly cheaper than two ROM devices; 2 meg DRAM is cheaper than the equivalent SRAM and the programmable logic required to load serial EEPROM and interface to DRAM is a low-cost, medium complexity CPLD which is needed in any case for a traditional design. Because the serial EEPROM is a small 8-pin device and the 1meg x 16 DRAM is in space-saving 44-pin SOJ package, the resulting circuit board is smaller, thus at lower cost, . The theory of operation is described in greater details below.
 
-- Two-layer PC board in 100mm x 76mm format. Many board manufacturers only charge 50 cents per board in quantity of 10 in this format,
-- Memory in the form of single-chip 1Mx16 DRAM,
-- Low cost 5-Volt CPLD, Altera EPM7128, that is about $3-4 each from China,
-- Use low-cost serial flash memory as the boot memory,
-- Interface via pc board edge connector to a low-cost 44-pin IDE-CF module,
-- No on-board RS232 transceiver because most USB-based serial port modules operate at the TTL level,
-- Low cost RC2014 expansion bus connector.
+The CPLD is an Altera EPM7128SQC100 that contains both the serial EEPROM loader as well as the DRAM controller. To copy the content of the serial EEPROM to DRAM, there are a number of distinct operations:
+1. The serial EEPROM's internal address counter needs to be initialized to zero. This is done with a “Dummy Write” command where a 3-byte command consists of START-EEPROM Address-Low address-High address is sent serially to the EEPROM.
+2. After the serial EEPROM's address counter is initialized to zero, a “Sequential Read” command is issued followed by continuous byte reads of the EEPROM. The serial EEPROM's internal address counter will automatically increment to next address for every byte read.
+3. The serial EEPROM loader state machine is a large counter chain consists of a 15-bit byte counter for 32K bytes of data, a bit counters for 8-bit data plus 1-bit acknowledge, and a clock divider to divide down the internal 8MHz master clock to 500KHz serial clock. The 15-bit byte counter also serves as the address generator for the DRAM address such that the 3 most significant bits are presented during the RAS cycle and the 11 lower bits are presented during the CAS cycle. The least significant bit of the 15-bit byte counter determines the Odd/Even bytes, so it is not used for DRAM addressing.
+4. Because 68000's data bus is 16-bit wide, the main memory is a 1meg X 16 DRAM. The serial data from the EEPROM is shifted into a 16-bit data register. During the acknowledge cycle of the serial EEPROM read operation, the 16-bit data in the shift register along with 14 bit of address from the 15-bit byte counter (the least significant 15th address bit is the Odd/Even byte of a 16-bit word and not used) are used to drive the DRAM controller and write data into DRAM.
+5. The serial clock rate is 500KHz or 2uS per bit and there are 9 bit per byte (8 data bit plus acknowledge), so it takes close to 600mS to copy the content of the 256k-bit flash into DRAM. Therefore the DRAM refresh logic must be operating during the copying operation. The refresh operation is CAS-before-RAS and runs in the background once every 128 master clocks (one refresh per 16uS).
+6. At the end of the copying operation, the content of the serial EEPROM will reside in the lowest 32K bytes of DRAM. The base address of DRAM is at 0x0 so upon the negation of 68000 nRESET at the end of the copying operation, the 68000 will fetch valid data in DRAM just copied from the serial EEPROM.
 
-Good performance is maintained by:
-
-- 16-bit wide data bus,
-- 2-megabyte 60ns DRAM operating at zero wait state (at 8MHz system clock),
-- Fast serial flash loads monitor in 0.6 second after a reset or power on,
-- 16-bit wide bus-connected IDE interface operating with two wait state at 8MHz, ←verify this
-- Hidden CAS-before-RAS refresh cycle with no software overhead.
+The software development environment for the serial EEPROM is as followed:
+- EASy68K is the 68000 assembler which generates S-Record as its output.
+- EASyBIN converts the S-Record to binary format
+- a USB-based serial EEPROM programmer, CH341A, reads in the binary data and programs a serial EEPROM. This serial EEPROM becomes the boot device
 
 ### Memory map
 
@@ -55,11 +52,30 @@ Good performance is maintained by:
 - 68681 DUART is from 0xFFF000-0xFFFFFF
 - RC2014 expansion bus is from 0xFF8000-0xFF8FFF. 2 wait states access ← verify this
 
-### Design Files <- Need extensive updates
+## Design Files <- Need extensive updates
 
 * Rev 1 schematic
 * Rev 1 Gerber files
 * Part list
+
+Software
+Tiny68K Monitor debugger. The software is developed in the EASy68K tool chain. Programming binary for serial EEPROM programmer (CH341).
+
+Clear CP/M memory area. This small utility prepare the memory space where CP/M BIOS/CCP/BDOS will reside. Its use is explain in the procedure for creating new CF disk.
+
+T68KRC BIOS, updated 8/11/19 with correct TPA size.
+
+CP/M-68K CPM v1.3
+
+CP/M-68K v1.3 distribution disk image for T68KRC RAMdrive
+
+RS232 adapter board to interface to the DB9 serial connector of a PC. The RS232 adapter is not needed for most USB-to-serial adapters which have TTL level I/O.
+
+Utility
+
+Memory diagnostics
+Clear CP/M memory area
+
 * Tiny68K Monitor debugger. The software is developed in the EASy68K tool chain. Programming binary for serial EEPROM programmer (CH341).
 * Altera EPM7128 design files Designs are created in Quartus 8.1, should be compatible with later version of Quartus. Designs are entirely in schematics. Schematic in PDF format. Programming binary in .pof format.
     11/23/17 update: The original design files posted were incorrect. This is the correct version of the design files. Altera EPM7128 design files Designs are created in Quartus 8.1, should be compatible with later version of Quartus. Designs are entirely in schematics. Schematic in PDF format. Programming binary in .pof format. ← need revision
