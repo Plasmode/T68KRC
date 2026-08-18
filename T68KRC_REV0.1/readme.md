@@ -1,12 +1,12 @@
-# T68KRC, Tiny68K for RC2014
-## Introduction
+# T68KRC, Rev0.1 
+### Introduction
 
 T68KRC derived from version 1 of Tiny68K. The major differences are Instead of 16 meg of memory, T68KRC has 2 meg of memory, and an expansion bus that's compatible with RC2014's I/O module is added. Like Tiny68K, T68KRC has no parallel ROM. The boot ROM is a 32Kbyte serial flash that's copied into the lowest 32Kbyte of the memory when powered up or with a reset. The RAM-resident boot software can be modified just like any data in RAM but is overwritten on the next power cycle or with a reset.
 
 Figure below shows an assembled T68KRC Rev0.1.
 ![rev0.1](t68krc_rev01_topview.jpg)
 
-## Features
+### Features
 
 - Motorola 68000 CPU
 - MC68681 DUART, port A is the console operating at 38400 baud, 8N1, with CTS/RTS hardware handshake.
@@ -27,7 +27,7 @@ Figure below shows an assembled T68KRC Rev0.1.
 - Target for CP/M-68K ver 1.3
 - 100mm x 76mm 2-layer pc board
 
-## Descriptions
+### Descriptions
 
 Low cost without sacrificing performance is the design goal of T68KRC. Cost control is achieved by:
 
@@ -55,7 +55,7 @@ Good performance is maintained by:
 - 68681 DUART is from 0xFFF000-0xFFFFFF
 - RC2014 expansion bus is from 0xFF8000-0xFF8FFF. 2 wait states access ← verify this
 
-## Design Files <- Need extensive updates
+### Design Files <- Need extensive updates
 
 * Rev 1 schematic
 * Rev 1 Gerber files
