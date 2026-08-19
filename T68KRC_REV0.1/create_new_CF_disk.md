@@ -1,7 +1,7 @@
 ## Creating New CF disk for T68KRC
 ### Install CP/M-68K in new CF track 1
 - Insert a CF disk in the adapter. WARNING: the content of the CF will be erased.
-- clear the memory from 0x15000 to 0x20000 with the program “clrcpmmem.s68 ”. Use the “send text file” command of your terminal program to upload. This program will auto-execute when file loading is finished. When program execution is completed it will display “S record execution completed” and prompt for more inputs. Please note that source & listing are included in the zip file, only upload the file with .s68 extension.
+- clear the memory from 0x15000 to 0x20000 with the program “[clrcpmmem.s68](software/t68krc_rev01_software_clrcpmmem.zip)”. Use the “send text file” command of your terminal program to upload. This program will auto-execute when file loading is finished. When program execution is completed it will display “S record execution completed” and prompt for more inputs. Please note that source & listing are included in the zip file, only upload the file with .s68 extension.
 - upload “CPM15000.s68 ”. This is the CP/M-68K CCP and BDOS. Wait for the input prompt after about 15 seconds.
 - upload “T68KBIOS.s68 ”. This is the BIOS specific to the T68KRC. The current revision is rev 1
 - lastly upload “writeBoot.s68 ”. This will write CCP, BDOS, and BIOS into track1 of CF disk.
