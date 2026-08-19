@@ -56,15 +56,17 @@ The software development environment for the serial EEPROM is as followed:
 
 * Rev 0.1 [schematic](t68krc_r01_scm.pdf)
 * Rev 0.1 [Gerber photoplots](t68krc_rev0_1_gerber.zip)
-* [CPLD design files](t68krc_rev0_1_cpld_design_files.zip) Altera EPM7128 design files Designs are created in Quartus 8.1, should be compatible with later version of Quartus. Designs are entirely in schematics. Schematic in PDF format. Programming binary in .pof format.
+* [CPLD design files](t68krc_rev0_1_cpld_design_files.zip) Altera EPM7128 design files Designs are created in Quartus 8.1, should be compatible with later version of Quartus. Designs are entirely in schematics.
+  - Schematic in PDF format.
+  - CPLD Programming binary in .pof format.
 * Part list
 
 ### Software
-- Tiny68K Monitor debugger. The software is developed in the EASy68K tool chain. Programming binary for serial EEPROM programmer (CH341).
-- Clear CP/M memory area. This small utility prepare the memory space where CP/M BIOS/CCP/BDOS will reside. Its use is explain in the procedure for creating new CF disk.
-- T68KRC BIOS, updated 8/11/19 with correct TPA size.
-- CP/M-68K CPM v1.3
-- CP/M-68K v1.3 distribution disk image for T68KRC RAMdrive
+- T68KRC [Monitor debugger](software/t68krc_rev01_software_debugger_v0_0.zip). The software is developed in the EASy68K tool chain. Programming binary for serial EEPROM programmer (CH341).
+- [Clear CP/M memory](software/t68krc_rev01_software_clrcpmmem.zip) area. This small utility prepare the memory space where CP/M BIOS/CCP/BDOS will reside. Its use is explain in the procedure for creating new CF disk.
+- [T68KRC BIOS](software/t68krc_rev01_software_t68kbios_r1.zip), updated 8/11/19 with correct TPA size.
+- [CP/M-68K v1.3](software/cpm68k_cpm15000.zip) located starting from 0x15000
+- CP/M-68K v1.3 distribution [disk image for T68KRC RAMdrive](software/t68krc_rev01_software_ram_disk_image_srecord.zip)
 - RS232 adapter board to interface to the DB9 serial connector of a PC. The RS232 adapter is not needed for most USB-to-serial adapters which have TTL level I/O.
 - Utility
   - Memory diagnostics
