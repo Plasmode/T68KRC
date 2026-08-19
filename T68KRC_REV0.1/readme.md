@@ -79,4 +79,4 @@ A PC with terminal program such as Hyperterminal is needed to interface with Tin
 ### Powering up T68KRC
 
 Apply 5V to the board via the 2.5mm power jack, the center is 5V, barrel is ground. The nominal power consumption at 8MHz system clock is 500mA. When powered is applied, the 7-segment LED will display '8' for a second and then '6'. While waiting for console command, the outer segments of the 7-segment display will flash for 1/2 second, one segment at a time, in a circular sequence. If the display indicate a static '4', it is waiting for hardware handshake signal to assert. Be sure the terminal program has RTS/CTS hardware handshake enabled.
-### Creating a new CF disk
+### Creating a [new CF disk](create_new_CF_disk.md)
