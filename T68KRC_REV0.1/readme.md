@@ -67,7 +67,6 @@ The software development environment for the serial EEPROM is as followed:
 - [T68KRC BIOS](software/t68krc_rev01_software_t68kbios_r1.zip), updated 8/11/19 with correct TPA size.
 - [CP/M-68K v1.3](software/cpm68k_cpm15000.zip) located starting from 0x15000
 - CP/M-68K v1.3 distribution [disk image for T68KRC RAMdrive](software/t68krc_rev01_software_ram_disk_image_srecord.zip)
-- RS232 adapter board to interface to the DB9 serial connector of a PC. The RS232 adapter is not needed for most USB-to-serial adapters which have TTL level I/O.
 - Utility
   - Memory diagnostics
   - Clear CP/M memory area
@@ -76,6 +75,7 @@ The software development environment for the serial EEPROM is as followed:
 ### Connect to a PC
 
 A PC with terminal program such as Hyperterminal is needed to interface with Tiny68K. An USB-to-serial adapter with TTL level input/output can connect directly to T68KRC's console connector. For USB-to-serial adapter with RS232 I/O, an adapter board is needed.
+- [RS232 adapter board](console_rs232_interface.pdf) to interface to the DB9 serial connector of a PC. The RS232 adapter is not needed for most USB-to-serial adapters which have TTL level I/O.
 ### Powering up T68KRC
 
 Apply 5V to the board via the 2.5mm power jack, the center is 5V, barrel is ground. The nominal power consumption at 8MHz system clock is 500mA. When powered is applied, the 7-segment LED will display '8' for a second and then '6'. While waiting for console command, the outer segments of the 7-segment display will flash for 1/2 second, one segment at a time, in a circular sequence. If the display indicate a static '4', it is waiting for hardware handshake signal to assert. Be sure the terminal program has RTS/CTS hardware handshake enabled.
