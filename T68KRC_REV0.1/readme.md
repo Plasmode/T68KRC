@@ -63,7 +63,7 @@ The software development environment for the serial EEPROM is as followed:
 
 ### Software
 - T68KRC [Monitor debugger](software/t68krc_rev01_software_debugger_v0_0.zip). The software is developed in the EASy68K tool chain. Programming binary for serial EEPROM programmer (CH341).
-- [Clear CP/M memory](software/t68krc_rev01_software_clrcpmmem.zip) area. This small utility prepare the memory space where CP/M BIOS/CCP/BDOS will reside. Its use is explain in the procedure for creating new CF disk.
+- [Clear CP/M memory](software/t68krc_rev01_software_clrcpmmem.zip) area. This small utility prepare the memory space where CP/M BIOS/CCP/BDOS will reside. Its use is explain in the procedure for [creating new CF disk](create_new_CF_disk.md).
 - [T68KRC BIOS](software/t68krc_rev01_software_t68kbios_r1.zip), updated 8/11/19 with correct TPA size.
 - [CP/M-68K v1.3](software/cpm68k_cpm15000.zip) located starting from 0x15000
 - CP/M-68K v1.3 distribution [disk image for T68KRC RAMdrive](software/t68krc_rev01_software_ram_disk_image_srecord.zip)
