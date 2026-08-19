@@ -54,8 +54,9 @@ The software development environment for the serial EEPROM is as followed:
 
 ## Design Files <- Need extensive updates
 
-* Rev 1 schematic
-* Rev 1 Gerber files
+* Rev 0.1 [schematic](t68krc_r01_scm.pdf)
+* Rev 0.1 [Gerber photoplots](t68krc_rev0_1_gerber.zip)
+* [CPLD design files](t68krc_rev0_1_cpld_design_files.zip) Altera EPM7128 design files Designs are created in Quartus 8.1, should be compatible with later version of Quartus. Designs are entirely in schematics. Schematic in PDF format. Programming binary in .pof format.
 * Part list
 
 ### Software
@@ -68,10 +69,6 @@ The software development environment for the serial EEPROM is as followed:
 - Utility
   - Memory diagnostics
   - Clear CP/M memory area
-
-
-* Altera EPM7128 design files Designs are created in Quartus 8.1, should be compatible with later version of Quartus. Designs are entirely in schematics. Schematic in PDF format. Programming binary in .pof format.
-    11/23/17 update: The original design files posted were incorrect. This is the correct version of the design files. Altera EPM7128 design files Designs are created in Quartus 8.1, should be compatible with later version of Quartus. Designs are entirely in schematics. Schematic in PDF format. Programming binary in .pof format. ← need revision
 
 
 ### Connect to a PC
